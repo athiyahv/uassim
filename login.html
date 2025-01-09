@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Login</title>
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+    <link rel="stylesheet" href="login.css" />
+  </head>
+
+  <body>
+    <section>
+      <div class="form-box">
+        <div class="form-value">
+          <form id="logForm" name="logform" method="post">
+            <h2>Please Login!</h2>
+            <div class="inputbox">
+              <ion-icon name="mail-outline"></ion-icon> <input type="email" name="email" required />
+              <label>Email</label>
+            </div>
+            <div class="inputbox"><ion-icon name="eye-closed-outline"></ion-icon> <input type="password" name="pass" required /> <label>Password</label></div>
+            <div class="forget">
+              <label><input type="checkbox" />Remember Me</label> <a href="#">Forgot Password</a>
+            </div>
+            <button type="submit">Log In</button>
+            <div class="register">
+              <p>Don't have an account? <a href="signup.html">Sign Up</a></p>
+            </div>
+          </form>
+        </div>
+      </div>
+    </section>
+
+    <script>
+      // URL of your Google Apps Script Web App
+      const scriptURL = "https://script.google.com/macros/s/AKfycbwd3QAZ4nj25z92mh4B_RDWzz0dBevsewL_DER4J_JnxV_kI5J1b7H5x_Z-p9A-KcPfaw/exec";
+
+      // Select the form element
+      const form = document.forms["logForm"];
+
+      // Add an event listener for the form submission
+      form.addEventListener("submit", (e) => {
+        e.preventDefault(); // Prevent the default form submission behavior
+
+        // Fetch call to send form data
+        fetch(scriptURL, {
+          method: "POST",
+          body: new FormData(form),
+        })
+          .then((response) => {
+            if (response.ok) {
+              alert("Log in successful!"); // Notify the user on success
+              form.reset(); // Clear the form after submission
+
+              // Redirect to the homepage (change 'index.html' to your actual homepage file)
+              window.location.href = "web.html"; // Change to the homepage URL as needed
+            } else {
+              throw new Error("Failed to submit the form. Please try again.");
+            }
+          })
+          .catch((error) => {
+            console.error("Error!", error.message); // Log the error to the console
+            alert(`Error: ${error.message}`); // Notify the user of the error
+          });
+      });
+    </script>
+  </body>
+</html>

@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Signup</title>
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+    <link rel="stylesheet" href="signup.css" />
+  </head>
+
+  <body>
+    <section>
+      <div class="form-box">
+        <div class="form-value">
+          <form id="signForm" name="signform" method="post">
+            <h2>Please Sign Up!</h2>
+            <div class="inputbox">
+              <input type="name" name="name" required />
+              <label>Name</label>
+            </div>
+            <div class="inputbox">
+              <ion-icon name="mail-outline"></ion-icon> <input type="email" name="email" required />
+              <label>Email</label>
+            </div>
+            <div class="inputbox"><ion-icon name="eye-closed-outline"></ion-icon> <input type="password" name="pass" required /> <label>Password</label></div>
+            <div class="inputbox"><ion-icon name="eye-closed"></ion-icon> <input type="password" name="confirmpass" required /> <label>Confirm Password</label></div>
+            <div class="forget">
+              <label><input type="checkbox" />Remember Me</label>
+            </div>
+            <button type="submit" class="btn btn-primary">Sign in</button>
+            <div class="register">
+              <p>Already have an account? <a href="login.html">Log in</a></p>
+            </div>
+          </form>
+          <script>
+            // Add event listener for form submission
+            document.getElementById("orderForm").addEventListener("submit", function (event) {
+              // Get password and confirm password values
+              const password = document.getElementById("password").value;
+              const confirmPassword = document.getElementById("confirmPassword").value;
+
+              // Check if passwords match
+              if (password !== confirmPassword) {
+                event.preventDefault(); // Prevent form submission
+                alert("Passwords do not match! Please re-enter.");
+              }
+            });
+          </script>
+        </div>
+      </div>
+    </section>
+
+    <script>
+      // URL of your Google Apps Script Web App
+      const scriptURL = "https://script.google.com/macros/s/AKfycbzo5zcOhL98pJ8gGS0xcR1-1Dj_eayh3u9pD0JwSFVWkYLfllghYX02EUG9D6CvxCz_oQ/exec";
+
+      // Select the form element
+      const form = document.forms["signForm"];
+
+      // Add an event listener for the form submission
+      form.addEventListener("submit", (e) => {
+        e.preventDefault(); // Prevent the default form submission behavior
+
+        // Fetch call to send form data
+        fetch(scriptURL, {
+          method: "POST",
+          body: new FormData(form),
+        })
+          .then((response) => {
+            if (response.ok) {
+              alert("Sign up successful!"); // Notify the user on success
+              form.reset(); // Clear the form after submission
+
+              // Redirect to the homepage (change 'index.html' to your actual homepage file)
+              window.location.href = "web.html"; // Change to the homepage URL as needed
+            } else {
+              throw new Error("Failed to submit the form. Please try again.");
+            }
+          })
+          .catch((error) => {
+            console.error("Error!", error.message); // Log the error to the console
+            alert(`Error: ${error.message}`); // Notify the user of the error
+          });
+      });
+    </script>
+  </body>
+</html>

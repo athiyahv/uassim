@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Matrix</title>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css" />
+    <link rel="stylesheet" href="header.css" />
+  </head>
+  <body>
+    <!-- Header Section -->
+    <header class="header">
+      <input type="checkbox" name="" id="toggler" />
+      <label for="toggler" class="fas fa-bars"></label>
+      <a href="web.html" class="logo">materix<span>.</span></a>
+    </header>
+
+    <!-- Order Form Section -->
+    <section class="cart" id="cart">
+      <h1 class="heading"><span>Order</span> Form</h1>
+      <div class="row">
+        <form id="coForm" name="coForm" method="post">
+          <!-- Identities Section -->
+          <h2>Identities</h2>
+          <input type="text" placeholder="Name" name="name" class="box" required />
+          <input type="number" placeholder="Phone Number" name="phone_number" class="box" required />
+          <textarea class="box" placeholder="Address" name="address" cols="20" rows="5" required></textarea>
+
+          <!-- Payment Section -->
+          <h2>Payment</h2>
+          <select id="paymentmethod" name="payment" class="box" required>
+            <option value="" disabled selected>Select Payment Method</option>
+            <option value="Credit Card">Credit Card</option>
+            <option value="Cash">Cash</option>
+            <option value="M-Bank">Mobile Banking</option>
+          </select>
+
+          <!-- Item Section -->
+          <h2>Item</h2>
+          <select id="itemorder" name="item" class="box" required>
+            <option value="" disabled selected>Select Item</option>
+            <option value="Cement">Cement</option>
+            <option value="Bricks">Bricks</option>
+            <option value="Wires">Wires</option>
+          </select>
+
+          <input type="number" id="quantity" name="quantity" class="box" required placeholder="Enter quantity" min="1" step="1" />
+
+          <button type="submit" class="btn btn-primary">Submit Order</button>
+        </form>
+      </div>
+    </section>
+
+    <script>
+      // URL of your Google Apps Script Web App
+      const scriptURL = "https://script.google.com/macros/s/AKfycbwnOrM1l7oPKTPsXajLt9F14KkaKK-YefAAjLMVxZr4hVeoQIaco5XT8gpBlmk8Zb3Elw/exec";
+
+      // Select the form element
+      const form = document.forms["coForm"];
+
+      // Add an event listener for the form submission
+      form.addEventListener("submit", (e) => {
+        e.preventDefault(); // Prevent the default form submission behavior
+
+        // Fetch call to send form data
+        fetch(scriptURL, {
+          method: "POST",
+          body: new FormData(form),
+        })
+          .then((response) => {
+            if (response.ok) {
+              alert("Order successful!"); // Notify the user on success
+              form.reset(); // Clear the form after submission
+
+              // Redirect to the homepage (change 'index.html' to your actual homepage file)
+              window.location.href = "web.html"; // Change to the homepage URL as needed
+            } else {
+              throw new Error("Failed to submit the form. Please try again.");
+            }
+          })
+          .catch((error) => {
+            console.error("Error!", error.message); // Log the error to the console
+            alert(`Error: ${error.message}`); // Notify the user of the error
+          });
+      });
+    </script>
+  </body>
+</html>
