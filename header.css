@@ -173,7 +173,7 @@ section {
   flex: 1 1 30rem;
   box-shadow: 0.5rem 1.5rem rgba(0, 0, 0, 0.1);
   border-radius: 0.5rem;
-  padding: 3rem 2 rem;
+  padding: 4rem;
   position: relative;
   border: 0.1rem solid rgba(0, 0, 0, 0.1);
 }
@@ -187,8 +187,9 @@ section {
 }
 
 .review .box-container .box .stars i {
-  color: #555;
+  color: #ff9c1a;
   font-size: 2rem;
+  padding-bottom: 2rem;
 }
 
 .review .box-container .box p {
@@ -261,8 +262,31 @@ section {
 }
 
 .contact .row form textarea {
-  height: 15rem;
+  height: 20rem;
   resize: none;
+}
+
+.rating-box {
+  position: relative;
+  background: #fff;
+  padding: 4px 4px 4px;
+  border-radius: 25px;
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.05);
+}
+
+.rating-box .stars {
+  display: flex;
+  align-items: center;
+  gap: 25px;
+}
+.stars i {
+  color: #e6e6e6;
+  font-size: 35px;
+  cursor: pointer;
+  transition: color 0.2s ease;
+}
+.stars i.active {
+  color: #ff9c1a;
 }
 
 .cart {
@@ -386,9 +410,9 @@ header .fa-bars {
 
 .home {
   display: flex;
-  align-items: center;
+
   min-height: 100vh;
-  background: #b8b8b8;
+  background-image: url(hos1.jpg);
   background-size: cover;
   background-position: center;
 }
@@ -398,13 +422,14 @@ header .fa-bars {
 }
 
 .home .content h3 {
+  padding-top: 9rem;
   font-size: 6rem;
   color: #333;
 }
 
 .home .content span {
   font-size: 3.5rem;
-  color: var(--grey);
+  color: grey;
   padding: 1rem 0;
   line-height: 1.5;
 }
@@ -417,7 +442,115 @@ header .fa-bars {
 }
 
 .footer {
-  gap: 9rem;
+  position: relative;
+  bottom: 0;
+  left: 0;
+  transform: none;
+  max-width: none;
+  width: 100%;
+  background: #333;
+  border-radius: 0px;
+}
+.footer .footer-row {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  row-gap: 1;
+  padding: 30px;
+}
+.footer-row .footer-col h4 {
+  color: #fff;
+  font-size: 1.5rem;
+  font-weight: 400;
+}
+.footer-col .links {
+  margin-top: 20px;
+}
+.footer-col .links li {
+  list-style: none;
+  margin-bottom: 10px;
+}
+.footer-col .links li a {
+  text-decoration: none;
+  color: #bfbfbf;
+  font-size: 1rem;
+}
+.footer-col .links li a:hover {
+  color: #fff;
+}
+.footer-col p {
+  margin: 10px 0;
+  font-size: 1.1rem;
+  font-weight: 200;
+  color: #bfbfbf;
+  max-width: 300px;
+}
+.footer-col form {
+  display: flex;
+  gap: 5px;
+}
+.footer-col input {
+  height: 40px;
+  border-radius: 6px;
+  background: none;
+  width: 100%;
+  outline: none;
+  border: 1px solid #7489c6;
+  caret-color: #fff;
+  color: #fff;
+  padding-left: 10px;
+}
+.footer-col input::placeholder {
+  color: #ccc;
+}
+.footer-col form button {
+  background: #fff;
+  outline: none;
+  border: none;
+  padding: 10px 15px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 500;
+  transition: 0.2s ease;
+}
+.footer-col form button:hover {
+  background: #cecccc;
+}
+.footer-col .icons {
+  display: flex;
+  margin-top: 30px;
+  gap: 30px;
+
+  cursor: pointer;
+}
+.footer-col .icons i {
+  color: #afb6c7;
+}
+.footer-col .icons i:hover {
+  color: #fff;
+}
+@media (max-width: 768px) {
+  .footer {
+    position: relative;
+    bottom: 0;
+    left: 0;
+    transform: none;
+    width: 100%;
+    border-radius: 0;
+  }
+  .footer .footer-row {
+    padding: 20px;
+    gap: 1rem;
+  }
+  .footer-col form {
+    display: block;
+  }
+  .footer-col form :where(input, button) {
+    width: 100%;
+  }
+  .footer-col form button {
+    margin: 10px 0 0 0;
+  }
 }
 
 @media (max-width: 991px) {
